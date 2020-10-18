@@ -7,16 +7,26 @@ import io.realm.RealmConfiguration;
 import io.realm.RealmMigration;
 import io.realm.RealmSchema;
 
-public class Migration implements RealmMigration {
+public class Database implements RealmMigration {
 
-    public Migration() {
+    private Realm realm;
+
+    public Database() {
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
                 .schemaVersion(0)
-                .migration(new Migration())
+                .migration(new Database())
                 .build();
 
         Realm.setDefaultConfiguration(realmConfiguration);
-        Realm.getDefaultInstance();
+        realm = Realm.getDefaultInstance();
+    }
+
+    public void executeTransaction(Realm.Transaction transaction) {
+        realm.executeTransaction(transaction);
+    }
+
+    public void close() {
+        realm.close();
     }
 
     @Override

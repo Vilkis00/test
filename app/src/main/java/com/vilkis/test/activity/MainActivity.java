@@ -1,8 +1,10 @@
-package com.vilkis.test;
+package com.vilkis.test.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.vilkis.test.R;
 
 public class MainActivity extends AppCompatActivity {
 
